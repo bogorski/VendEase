@@ -1,0 +1,23 @@
+﻿<local:WszystkieViewBase x:Class="VendEase.Views.WszystkieZamowieniaZewnetrzneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedItem="{Binding WybraneZamowienieZewnetrze, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numer zamówienia" Binding="{Binding NumerZamowieniaZewnetrznego}"/>
+                <DataGridTextColumn Header="Nazwa magazynu" Binding="{Binding MagazynNazwa}"/>
+                <DataGridTextColumn Header="Miasto magazynu" Binding="{Binding MagazynMiasto}"/>
+                <DataGridTextColumn Header="Nazwa dostawcy" Binding="{Binding DostawcaNazwa}"/>
+                <DataGridTextColumn Header="Numer faktury" Binding="{Binding FakturaNumerFaktury}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

@@ -1,0 +1,1771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VendingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DostawaTowary">
+          <Key>
+            <PropertyRef Name="IDTowaru" />
+            <PropertyRef Name="IDZamowienieZewnetrzne" />
+          </Key>
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+          <Property Name="IDZamowienieZewnetrzne" Type="int" Nullable="false" />
+          <Property Name="Ilosc" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataWaznosci" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Dostawcy">
+          <Key>
+            <PropertyRef Name="IDDostawcy" />
+          </Key>
+          <Property Name="IDDostawcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="10" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Faktury">
+          <Key>
+            <PropertyRef Name="IDFaktury" />
+          </Key>
+          <Property Name="IDFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NazwaSprzedawcy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WartoscNetto" Type="money" Nullable="false" />
+          <Property Name="WartoscBrutto" Type="money" Nullable="false" />
+          <Property Name="VAT" Type="int" Nullable="false" />
+          <Property Name="DataWystawienia" Type="datetime" Nullable="false" />
+          <Property Name="NumerFaktury" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LokalizacjaMaszyny">
+          <Key>
+            <PropertyRef Name="IdLokalizacji" />
+            <PropertyRef Name="NumerMaszyny" />
+          </Key>
+          <Property Name="IdLokalizacji" Type="int" Nullable="false" />
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lokalizacje">
+          <Key>
+            <PropertyRef Name="IDLokalizacji" />
+          </Key>
+          <Property Name="IDLokalizacji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaKlienta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MagazynTowary">
+          <Key>
+            <PropertyRef Name="IDMagazynu" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDMagazynu" Type="int" Nullable="false" />
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+          <Property Name="Stan" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Magazyny">
+          <Key>
+            <PropertyRef Name="IDMagazynu" />
+          </Key>
+          <Property Name="IDMagazynu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MaszynaTowary">
+          <Key>
+            <PropertyRef Name="NumerMaszyny" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+          <Property Name="Stan" Type="int" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="MaszynaTrasa">
+          <Key>
+            <PropertyRef Name="NumerMaszyny" />
+            <PropertyRef Name="IDTrasy" />
+          </Key>
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDTrasy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Maszyny">
+          <Key>
+            <PropertyRef Name="NumerMaszyny" />
+          </Key>
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDTypMaszyny" Type="int" Nullable="false" />
+          <Property Name="NumerSeryjny" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RokProdukcji" Type="datetime" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataMontazu" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Pojazdy">
+          <Key>
+            <PropertyRef Name="IDPojazdu" />
+          </Key>
+          <Property Name="IDPojazdu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumerRejestracyjny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DataPrzegladu" Type="datetime" Nullable="false" />
+          <Property Name="DataUbezpieczenia" Type="datetime" Nullable="false" />
+          <Property Name="IDWarsztatu" Type="int" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usterki" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pracownicy">
+          <Key>
+            <PropertyRef Name="IDPracownika" />
+          </Key>
+          <Property Name="IDPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDStanowiskaPracy" Type="int" Nullable="false" />
+          <Property Name="Pensja" Type="money" Nullable="false" />
+          <Property Name="DataZatrudnienia" Type="datetime" Nullable="false" />
+          <Property Name="IDPojazdu" Type="int" />
+          <Property Name="IDTrasy" Type="int" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PracownikTowary">
+          <Key>
+            <PropertyRef Name="IDPracownika" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDPracownika" Type="int" Nullable="false" />
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+          <Property Name="Stan" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StanowiskaPracy">
+          <Key>
+            <PropertyRef Name="IDStanowiskaPracy" />
+          </Key>
+          <Property Name="IDStanowiskaPracy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaStanowiska" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dzial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WymaganeDoswiadczenie" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataUtworzenia" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Towary">
+          <Key>
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Producent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodKreskowy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Wymiary" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transakcje">
+          <Key>
+            <PropertyRef Name="IDTransakcji" />
+          </Key>
+          <Property Name="IDTransakcji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+          <Property Name="Ilosc" Type="int" Nullable="false" />
+          <Property Name="TypPlatnosci" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Trasy">
+          <Key>
+            <PropertyRef Name="IDTrasy" />
+          </Key>
+          <Property Name="IDTrasy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="datetime" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ocena" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TypyMaszyn">
+          <Key>
+            <PropertyRef Name="IDTypMaszyny" />
+          </Key>
+          <Property Name="IDTypMaszyny" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Typ" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Producent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Warsztaty">
+          <Key>
+            <PropertyRef Name="IDWarsztatu" />
+          </Key>
+          <Property Name="IDWarsztatu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="IDWizyty" />
+          </Key>
+          <Property Name="IDWizyty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDPracownika" Type="int" Nullable="false" />
+          <Property Name="NumerMaszyny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="TypWizyty" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="IDZamowienia" />
+          </Key>
+          <Property Name="IDZamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMagazynu" Type="int" Nullable="false" />
+          <Property Name="IDPracownika" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="Priorytet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ZamowieniaZewnetrzne">
+          <Key>
+            <PropertyRef Name="IDZamowienieZewnetrzne" />
+          </Key>
+          <Property Name="IDZamowienieZewnetrzne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMagazynu" Type="int" Nullable="false" />
+          <Property Name="IDDostawcy" Type="int" Nullable="false" />
+          <Property Name="IDFaktury" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ZamowienieTowary">
+          <Key>
+            <PropertyRef Name="IDZamowienia" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDZamowienia" Type="int" Nullable="false" />
+          <Property Name="IDTowaru" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Lokalizac__IdLok__278EDA44">
+          <End Role="Lokalizacje" Type="Self.Lokalizacje" Multiplicity="1" />
+          <End Role="LokalizacjaMaszyny" Type="Self.LokalizacjaMaszyny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokalizacje">
+              <PropertyRef Name="IDLokalizacji" />
+            </Principal>
+            <Dependent Role="LokalizacjaMaszyny">
+              <PropertyRef Name="IdLokalizacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lokalizac__Numer__2882FE7D">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="LokalizacjaMaszyny" Type="Self.LokalizacjaMaszyny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="LokalizacjaMaszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaszynaTr__IDTra__324172E1">
+          <End Role="Trasy" Type="Self.Trasy" Multiplicity="1" />
+          <End Role="MaszynaTrasa" Type="Self.MaszynaTrasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trasy">
+              <PropertyRef Name="IDTrasy" />
+            </Principal>
+            <Dependent Role="MaszynaTrasa">
+              <PropertyRef Name="IDTrasy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaszynaTr__Numer__314D4EA8">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="MaszynaTrasa" Type="Self.MaszynaTrasa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="MaszynaTrasa">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DostawaTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="DostawaTowary" Type="Self.DostawaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="DostawaTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DostawaTowary_ZamowieniaZewnetrzne">
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="1" />
+          <End Role="DostawaTowary" Type="Self.DostawaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDZamowienieZewnetrzne" />
+            </Principal>
+            <Dependent Role="DostawaTowary">
+              <PropertyRef Name="IDZamowienieZewnetrzne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MagazynTowary_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="MagazynTowary" Type="Self.MagazynTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="MagazynTowary">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MagazynTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="MagazynTowary" Type="Self.MagazynTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="MagazynTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaszynaTowary_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="MaszynaTowary" Type="Self.MaszynaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="MaszynaTowary">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaszynaTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="MaszynaTowary" Type="Self.MaszynaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="MaszynaTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maszyny_TypyMaszyn">
+          <End Role="TypyMaszyn" Type="Self.TypyMaszyn" Multiplicity="1" />
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypyMaszyn">
+              <PropertyRef Name="IDTypMaszyny" />
+            </Principal>
+            <Dependent Role="Maszyny">
+              <PropertyRef Name="IDTypMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pojazdy_Warsztaty">
+          <End Role="Warsztaty" Type="Self.Warsztaty" Multiplicity="0..1" />
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warsztaty">
+              <PropertyRef Name="IDWarsztatu" />
+            </Principal>
+            <Dependent Role="Pojazdy">
+              <PropertyRef Name="IDWarsztatu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_Pojazdy">
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="0..1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazdy">
+              <PropertyRef Name="IDPojazdu" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDPojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_StanowiskaPracy">
+          <End Role="StanowiskaPracy" Type="Self.StanowiskaPracy" Multiplicity="1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StanowiskaPracy">
+              <PropertyRef Name="IDStanowiskaPracy" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDStanowiskaPracy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_Trasy">
+          <End Role="Trasy" Type="Self.Trasy" Multiplicity="0..1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trasy">
+              <PropertyRef Name="IDTrasy" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDTrasy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PracownikTowary_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="PracownikTowary" Type="Self.PracownikTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="PracownikTowary">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PracownikTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="PracownikTowary" Type="Self.PracownikTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="PracownikTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transakcje_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="Transakcje">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transakcje_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="Transakcje">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienia_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienia_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Dostawcy">
+          <End Role="Dostawcy" Type="Self.Dostawcy" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dostawcy">
+              <PropertyRef Name="IDDostawcy" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDDostawcy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Faktury">
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktury">
+              <PropertyRef Name="IDFaktury" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowienieTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="ZamowienieTowary" Type="Self.ZamowienieTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="ZamowienieTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowienieTowary_Zamowienia">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="1" />
+          <End Role="ZamowienieTowary" Type="Self.ZamowienieTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="IDZamowienia" />
+            </Principal>
+            <Dependent Role="ZamowienieTowary">
+              <PropertyRef Name="IDZamowienia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VendingModelStoreContainer">
+          <EntitySet Name="DostawaTowary" EntityType="Self.DostawaTowary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktury" EntityType="Self.Faktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LokalizacjaMaszyny" EntityType="Self.LokalizacjaMaszyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lokalizacje" EntityType="Self.Lokalizacje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MagazynTowary" EntityType="Self.MagazynTowary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyny" EntityType="Self.Magazyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaszynaTowary" EntityType="Self.MaszynaTowary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaszynaTrasa" EntityType="Self.MaszynaTrasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maszyny" EntityType="Self.Maszyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pojazdy" EntityType="Self.Pojazdy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PracownikTowary" EntityType="Self.PracownikTowary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StanowiskaPracy" EntityType="Self.StanowiskaPracy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towary" EntityType="Self.Towary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transakcje" EntityType="Self.Transakcje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trasy" EntityType="Self.Trasy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypyMaszyn" EntityType="Self.TypyMaszyn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warsztaty" EntityType="Self.Warsztaty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZamowieniaZewnetrzne" EntityType="Self.ZamowieniaZewnetrzne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZamowienieTowary" EntityType="Self.ZamowienieTowary" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Lokalizac__IdLok__278EDA44" Association="Self.FK__Lokalizac__IdLok__278EDA44">
+            <End Role="Lokalizacje" EntitySet="Lokalizacje" />
+            <End Role="LokalizacjaMaszyny" EntitySet="LokalizacjaMaszyny" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lokalizac__Numer__2882FE7D" Association="Self.FK__Lokalizac__Numer__2882FE7D">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="LokalizacjaMaszyny" EntitySet="LokalizacjaMaszyny" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaszynaTr__IDTra__324172E1" Association="Self.FK__MaszynaTr__IDTra__324172E1">
+            <End Role="Trasy" EntitySet="Trasy" />
+            <End Role="MaszynaTrasa" EntitySet="MaszynaTrasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaszynaTr__Numer__314D4EA8" Association="Self.FK__MaszynaTr__Numer__314D4EA8">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="MaszynaTrasa" EntitySet="MaszynaTrasa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DostawaTowary_Towary" Association="Self.FK_DostawaTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="DostawaTowary" EntitySet="DostawaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DostawaTowary_ZamowieniaZewnetrzne" Association="Self.FK_DostawaTowary_ZamowieniaZewnetrzne">
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+            <End Role="DostawaTowary" EntitySet="DostawaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MagazynTowary_Magazyny" Association="Self.FK_MagazynTowary_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="MagazynTowary" EntitySet="MagazynTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MagazynTowary_Towary" Association="Self.FK_MagazynTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="MagazynTowary" EntitySet="MagazynTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaszynaTowary_Maszyny" Association="Self.FK_MaszynaTowary_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="MaszynaTowary" EntitySet="MaszynaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaszynaTowary_Towary" Association="Self.FK_MaszynaTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="MaszynaTowary" EntitySet="MaszynaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maszyny_TypyMaszyn" Association="Self.FK_Maszyny_TypyMaszyn">
+            <End Role="TypyMaszyn" EntitySet="TypyMaszyn" />
+            <End Role="Maszyny" EntitySet="Maszyny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pojazdy_Warsztaty" Association="Self.FK_Pojazdy_Warsztaty">
+            <End Role="Warsztaty" EntitySet="Warsztaty" />
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_Pojazdy" Association="Self.FK_Pracownicy_Pojazdy">
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_StanowiskaPracy" Association="Self.FK_Pracownicy_StanowiskaPracy">
+            <End Role="StanowiskaPracy" EntitySet="StanowiskaPracy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_Trasy" Association="Self.FK_Pracownicy_Trasy">
+            <End Role="Trasy" EntitySet="Trasy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PracownikTowary_Pracownicy" Association="Self.FK_PracownikTowary_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="PracownikTowary" EntitySet="PracownikTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PracownikTowary_Towary" Association="Self.FK_PracownikTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="PracownikTowary" EntitySet="PracownikTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transakcje_Maszyny" Association="Self.FK_Transakcje_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="Transakcje" EntitySet="Transakcje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transakcje_Towary" Association="Self.FK_Transakcje_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="Transakcje" EntitySet="Transakcje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Maszyny" Association="Self.FK_Wizyty_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Pracownicy" Association="Self.FK_Wizyty_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienia_Magazyny" Association="Self.FK_Zamowienia_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienia_Pracownicy" Association="Self.FK_Zamowienia_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Dostawcy" Association="Self.FK_ZamowieniaZewnetrzne_Dostawcy">
+            <End Role="Dostawcy" EntitySet="Dostawcy" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Faktury" Association="Self.FK_ZamowieniaZewnetrzne_Faktury">
+            <End Role="Faktury" EntitySet="Faktury" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Magazyny" Association="Self.FK_ZamowieniaZewnetrzne_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowienieTowary_Towary" Association="Self.FK_ZamowienieTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="ZamowienieTowary" EntitySet="ZamowienieTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowienieTowary_Zamowienia" Association="Self.FK_ZamowienieTowary_Zamowienia">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="ZamowienieTowary" EntitySet="ZamowienieTowary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VendingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DostawaTowary">
+          <Key>
+            <PropertyRef Name="IDTowaru" />
+            <PropertyRef Name="IDZamowienieZewnetrzne" />
+          </Key>
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" />
+          <Property Name="IDZamowienieZewnetrzne" Type="Int32" Nullable="false" />
+          <Property Name="Ilosc" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataWaznosci" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Towary" Relationship="Self.FK_DostawaTowary_Towary" FromRole="DostawaTowary" ToRole="Towary" />
+          <NavigationProperty Name="ZamowieniaZewnetrzne" Relationship="Self.FK_DostawaTowary_ZamowieniaZewnetrzne" FromRole="DostawaTowary" ToRole="ZamowieniaZewnetrzne" />
+        </EntityType>
+        <EntityType Name="Dostawcy">
+          <Key>
+            <PropertyRef Name="IDDostawcy" />
+          </Key>
+          <Property Name="IDDostawcy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ZamowieniaZewnetrzne" Relationship="Self.FK_ZamowieniaZewnetrzne_Dostawcy" FromRole="Dostawcy" ToRole="ZamowieniaZewnetrzne" />
+        </EntityType>
+        <EntityType Name="Faktury">
+          <Key>
+            <PropertyRef Name="IDFaktury" />
+          </Key>
+          <Property Name="IDFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NazwaSprzedawcy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WartoscNetto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="WartoscBrutto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="VAT" Type="Int32" Nullable="false" />
+          <Property Name="DataWystawienia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumerFaktury" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ZamowieniaZewnetrzne" Relationship="Self.FK_ZamowieniaZewnetrzne_Faktury" FromRole="Faktury" ToRole="ZamowieniaZewnetrzne" />
+        </EntityType>
+        <EntityType Name="Lokalizacje">
+          <Key>
+            <PropertyRef Name="IDLokalizacji" />
+          </Key>
+          <Property Name="IDLokalizacji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaKlienta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.LokalizacjaMaszyny" FromRole="Lokalizacje" ToRole="Maszyny" />
+        </EntityType>
+        <EntityType Name="MagazynTowary">
+          <Key>
+            <PropertyRef Name="IDMagazynu" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDMagazynu" Type="Int32" Nullable="false" />
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" />
+          <Property Name="Stan" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Magazyny" Relationship="Self.FK_MagazynTowary_Magazyny" FromRole="MagazynTowary" ToRole="Magazyny" />
+          <NavigationProperty Name="Towary" Relationship="Self.FK_MagazynTowary_Towary" FromRole="MagazynTowary" ToRole="Towary" />
+        </EntityType>
+        <EntityType Name="Magazyny">
+          <Key>
+            <PropertyRef Name="IDMagazynu" />
+          </Key>
+          <Property Name="IDMagazynu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MagazynTowary" Relationship="Self.FK_MagazynTowary_Magazyny" FromRole="Magazyny" ToRole="MagazynTowary" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_Magazyny" FromRole="Magazyny" ToRole="Zamowienia" />
+          <NavigationProperty Name="ZamowieniaZewnetrzne" Relationship="Self.FK_ZamowieniaZewnetrzne_Magazyny" FromRole="Magazyny" ToRole="ZamowieniaZewnetrzne" />
+        </EntityType>
+        <EntityType Name="MaszynaTowary">
+          <Key>
+            <PropertyRef Name="NumerMaszyny" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="NumerMaszyny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" />
+          <Property Name="Stan" Type="Int32" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.FK_MaszynaTowary_Maszyny" FromRole="MaszynaTowary" ToRole="Maszyny" />
+          <NavigationProperty Name="Towary" Relationship="Self.FK_MaszynaTowary_Towary" FromRole="MaszynaTowary" ToRole="Towary" />
+        </EntityType>
+        <EntityType Name="Maszyny">
+          <Key>
+            <PropertyRef Name="NumerMaszyny" />
+          </Key>
+          <Property Name="NumerMaszyny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IDTypMaszyny" Type="Int32" Nullable="false" />
+          <Property Name="NumerSeryjny" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RokProdukcji" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataMontazu" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MaszynaTowary" Relationship="Self.FK_MaszynaTowary_Maszyny" FromRole="Maszyny" ToRole="MaszynaTowary" />
+          <NavigationProperty Name="TypyMaszyn" Relationship="Self.FK_Maszyny_TypyMaszyn" FromRole="Maszyny" ToRole="TypyMaszyn" />
+          <NavigationProperty Name="Transakcje" Relationship="Self.FK_Transakcje_Maszyny" FromRole="Maszyny" ToRole="Transakcje" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK_Wizyty_Maszyny" FromRole="Maszyny" ToRole="Wizyty" />
+          <NavigationProperty Name="Lokalizacje" Relationship="Self.LokalizacjaMaszyny" FromRole="Maszyny" ToRole="Lokalizacje" />
+          <NavigationProperty Name="Trasy" Relationship="Self.MaszynaTrasa" FromRole="Maszyny" ToRole="Trasy" />
+        </EntityType>
+        <EntityType Name="Pojazdy">
+          <Key>
+            <PropertyRef Name="IDPojazdu" />
+          </Key>
+          <Property Name="IDPojazdu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumerRejestracyjny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DataPrzegladu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataUbezpieczenia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDWarsztatu" Type="Int32" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usterki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Warsztaty" Relationship="Self.FK_Pojazdy_Warsztaty" FromRole="Pojazdy" ToRole="Warsztaty" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Pracownicy_Pojazdy" FromRole="Pojazdy" ToRole="Pracownicy" />
+        </EntityType>
+        <EntityType Name="Pracownicy">
+          <Key>
+            <PropertyRef Name="IDPracownika" />
+          </Key>
+          <Property Name="IDPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDStanowiskaPracy" Type="Int32" Nullable="false" />
+          <Property Name="Pensja" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DataZatrudnienia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDPojazdu" Type="Int32" />
+          <Property Name="IDTrasy" Type="Int32" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pojazdy" Relationship="Self.FK_Pracownicy_Pojazdy" FromRole="Pracownicy" ToRole="Pojazdy" />
+          <NavigationProperty Name="StanowiskaPracy" Relationship="Self.FK_Pracownicy_StanowiskaPracy" FromRole="Pracownicy" ToRole="StanowiskaPracy" />
+          <NavigationProperty Name="Trasy" Relationship="Self.FK_Pracownicy_Trasy" FromRole="Pracownicy" ToRole="Trasy" />
+          <NavigationProperty Name="PracownikTowary" Relationship="Self.FK_PracownikTowary_Pracownicy" FromRole="Pracownicy" ToRole="PracownikTowary" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK_Wizyty_Pracownicy" FromRole="Pracownicy" ToRole="Wizyty" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_Pracownicy" FromRole="Pracownicy" ToRole="Zamowienia" />
+        </EntityType>
+        <EntityType Name="PracownikTowary">
+          <Key>
+            <PropertyRef Name="IDPracownika" />
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDPracownika" Type="Int32" Nullable="false" />
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" />
+          <Property Name="Stan" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_PracownikTowary_Pracownicy" FromRole="PracownikTowary" ToRole="Pracownicy" />
+          <NavigationProperty Name="Towary" Relationship="Self.FK_PracownikTowary_Towary" FromRole="PracownikTowary" ToRole="Towary" />
+        </EntityType>
+        <EntityType Name="StanowiskaPracy">
+          <Key>
+            <PropertyRef Name="IDStanowiskaPracy" />
+          </Key>
+          <Property Name="IDStanowiskaPracy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaStanowiska" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dzial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WymaganeDoswiadczenie" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataUtworzenia" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Pracownicy_StanowiskaPracy" FromRole="StanowiskaPracy" ToRole="Pracownicy" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Towary">
+          <Key>
+            <PropertyRef Name="IDTowaru" />
+          </Key>
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Producent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodKreskowy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Wymiary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DostawaTowary" Relationship="Self.FK_DostawaTowary_Towary" FromRole="Towary" ToRole="DostawaTowary" />
+          <NavigationProperty Name="MagazynTowary" Relationship="Self.FK_MagazynTowary_Towary" FromRole="Towary" ToRole="MagazynTowary" />
+          <NavigationProperty Name="MaszynaTowary" Relationship="Self.FK_MaszynaTowary_Towary" FromRole="Towary" ToRole="MaszynaTowary" />
+          <NavigationProperty Name="PracownikTowary" Relationship="Self.FK_PracownikTowary_Towary" FromRole="Towary" ToRole="PracownikTowary" />
+          <NavigationProperty Name="Transakcje" Relationship="Self.FK_Transakcje_Towary" FromRole="Towary" ToRole="Transakcje" />
+          <NavigationProperty Name="Zamowienia" Relationship="Self.ZamowienieTowary" FromRole="Towary" ToRole="Zamowienia" />
+        </EntityType>
+        <EntityType Name="Transakcje">
+          <Key>
+            <PropertyRef Name="IDTransakcji" />
+          </Key>
+          <Property Name="IDTransakcji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerMaszyny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IDTowaru" Type="Int32" Nullable="false" />
+          <Property Name="Ilosc" Type="Int32" Nullable="false" />
+          <Property Name="TypPlatnosci" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.FK_Transakcje_Maszyny" FromRole="Transakcje" ToRole="Maszyny" />
+          <NavigationProperty Name="Towary" Relationship="Self.FK_Transakcje_Towary" FromRole="Transakcje" ToRole="Towary" />
+        </EntityType>
+        <EntityType Name="Trasy">
+          <Key>
+            <PropertyRef Name="IDTrasy" />
+          </Key>
+          <Property Name="IDTrasy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="DateTime" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ocena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Pracownicy_Trasy" FromRole="Trasy" ToRole="Pracownicy" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.MaszynaTrasa" FromRole="Trasy" ToRole="Maszyny" />
+        </EntityType>
+        <EntityType Name="TypyMaszyn">
+          <Key>
+            <PropertyRef Name="IDTypMaszyny" />
+          </Key>
+          <Property Name="IDTypMaszyny" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Producent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.FK_Maszyny_TypyMaszyn" FromRole="TypyMaszyn" ToRole="Maszyny" />
+        </EntityType>
+        <EntityType Name="Warsztaty">
+          <Key>
+            <PropertyRef Name="IDWarsztatu" />
+          </Key>
+          <Property Name="IDWarsztatu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pojazdy" Relationship="Self.FK_Pojazdy_Warsztaty" FromRole="Warsztaty" ToRole="Pojazdy" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="IDWizyty" />
+          </Key>
+          <Property Name="IDWizyty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDPracownika" Type="Int32" Nullable="false" />
+          <Property Name="NumerMaszyny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TypWizyty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Maszyny" Relationship="Self.FK_Wizyty_Maszyny" FromRole="Wizyty" ToRole="Maszyny" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Wizyty_Pracownicy" FromRole="Wizyty" ToRole="Pracownicy" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="IDZamowienia" />
+          </Key>
+          <Property Name="IDZamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMagazynu" Type="Int32" Nullable="false" />
+          <Property Name="IDPracownika" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Priorytet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Magazyny" Relationship="Self.FK_Zamowienia_Magazyny" FromRole="Zamowienia" ToRole="Magazyny" />
+          <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Zamowienia_Pracownicy" FromRole="Zamowienia" ToRole="Pracownicy" />
+          <NavigationProperty Name="Towary" Relationship="Self.ZamowienieTowary" FromRole="Zamowienia" ToRole="Towary" />
+        </EntityType>
+        <EntityType Name="ZamowieniaZewnetrzne">
+          <Key>
+            <PropertyRef Name="IDZamowienieZewnetrzne" />
+          </Key>
+          <Property Name="IDZamowienieZewnetrzne" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMagazynu" Type="Int32" Nullable="false" />
+          <Property Name="IDDostawcy" Type="Int32" Nullable="false" />
+          <Property Name="IDFaktury" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DostawaTowary" Relationship="Self.FK_DostawaTowary_ZamowieniaZewnetrzne" FromRole="ZamowieniaZewnetrzne" ToRole="DostawaTowary" />
+          <NavigationProperty Name="Dostawcy" Relationship="Self.FK_ZamowieniaZewnetrzne_Dostawcy" FromRole="ZamowieniaZewnetrzne" ToRole="Dostawcy" />
+          <NavigationProperty Name="Faktury" Relationship="Self.FK_ZamowieniaZewnetrzne_Faktury" FromRole="ZamowieniaZewnetrzne" ToRole="Faktury" />
+          <NavigationProperty Name="Magazyny" Relationship="Self.FK_ZamowieniaZewnetrzne_Magazyny" FromRole="ZamowieniaZewnetrzne" ToRole="Magazyny" />
+        </EntityType>
+        <Association Name="FK_DostawaTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="DostawaTowary" Type="Self.DostawaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="DostawaTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DostawaTowary_ZamowieniaZewnetrzne">
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="1" />
+          <End Role="DostawaTowary" Type="Self.DostawaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDZamowienieZewnetrzne" />
+            </Principal>
+            <Dependent Role="DostawaTowary">
+              <PropertyRef Name="IDZamowienieZewnetrzne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Dostawcy">
+          <End Role="Dostawcy" Type="Self.Dostawcy" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dostawcy">
+              <PropertyRef Name="IDDostawcy" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDDostawcy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Faktury">
+          <End Role="Faktury" Type="Self.Faktury" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktury">
+              <PropertyRef Name="IDFaktury" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MagazynTowary_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="MagazynTowary" Type="Self.MagazynTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="MagazynTowary">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MagazynTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="MagazynTowary" Type="Self.MagazynTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="MagazynTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienia_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZamowieniaZewnetrzne_Magazyny">
+          <End Role="Magazyny" Type="Self.Magazyny" Multiplicity="1" />
+          <End Role="ZamowieniaZewnetrzne" Type="Self.ZamowieniaZewnetrzne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyny">
+              <PropertyRef Name="IDMagazynu" />
+            </Principal>
+            <Dependent Role="ZamowieniaZewnetrzne">
+              <PropertyRef Name="IDMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaszynaTowary_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="MaszynaTowary" Type="Self.MaszynaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="MaszynaTowary">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaszynaTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="MaszynaTowary" Type="Self.MaszynaTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="MaszynaTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maszyny_TypyMaszyn">
+          <End Role="TypyMaszyn" Type="Self.TypyMaszyn" Multiplicity="1" />
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypyMaszyn">
+              <PropertyRef Name="IDTypMaszyny" />
+            </Principal>
+            <Dependent Role="Maszyny">
+              <PropertyRef Name="IDTypMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transakcje_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="Transakcje">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Maszyny">
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maszyny">
+              <PropertyRef Name="NumerMaszyny" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="NumerMaszyny" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pojazdy_Warsztaty">
+          <End Role="Warsztaty" Type="Self.Warsztaty" Multiplicity="0..1" />
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warsztaty">
+              <PropertyRef Name="IDWarsztatu" />
+            </Principal>
+            <Dependent Role="Pojazdy">
+              <PropertyRef Name="IDWarsztatu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_Pojazdy">
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="0..1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazdy">
+              <PropertyRef Name="IDPojazdu" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDPojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_StanowiskaPracy">
+          <End Role="StanowiskaPracy" Type="Self.StanowiskaPracy" Multiplicity="1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StanowiskaPracy">
+              <PropertyRef Name="IDStanowiskaPracy" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDStanowiskaPracy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownicy_Trasy">
+          <End Role="Trasy" Type="Self.Trasy" Multiplicity="0..1" />
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trasy">
+              <PropertyRef Name="IDTrasy" />
+            </Principal>
+            <Dependent Role="Pracownicy">
+              <PropertyRef Name="IDTrasy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PracownikTowary_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="PracownikTowary" Type="Self.PracownikTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="PracownikTowary">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienia_Pracownicy">
+          <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownicy">
+              <PropertyRef Name="IDPracownika" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="IDPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PracownikTowary_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="PracownikTowary" Type="Self.PracownikTowary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="PracownikTowary">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transakcje_Towary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="1" />
+          <End Role="Transakcje" Type="Self.Transakcje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towary">
+              <PropertyRef Name="IDTowaru" />
+            </Principal>
+            <Dependent Role="Transakcje">
+              <PropertyRef Name="IDTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LokalizacjaMaszyny">
+          <End Role="Lokalizacje" Type="Self.Lokalizacje" Multiplicity="*" />
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="*" />
+        </Association>
+        <Association Name="MaszynaTrasa">
+          <End Role="Trasy" Type="Self.Trasy" Multiplicity="*" />
+          <End Role="Maszyny" Type="Self.Maszyny" Multiplicity="*" />
+        </Association>
+        <Association Name="ZamowienieTowary">
+          <End Role="Towary" Type="Self.Towary" Multiplicity="*" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="VendingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DostawaTowary" EntityType="Self.DostawaTowary" />
+          <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" />
+          <EntitySet Name="Faktury" EntityType="Self.Faktury" />
+          <EntitySet Name="Lokalizacje" EntityType="Self.Lokalizacje" />
+          <EntitySet Name="MagazynTowary" EntityType="Self.MagazynTowary" />
+          <EntitySet Name="Magazyny" EntityType="Self.Magazyny" />
+          <EntitySet Name="MaszynaTowary" EntityType="Self.MaszynaTowary" />
+          <EntitySet Name="Maszyny" EntityType="Self.Maszyny" />
+          <EntitySet Name="Pojazdy" EntityType="Self.Pojazdy" />
+          <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" />
+          <EntitySet Name="PracownikTowary" EntityType="Self.PracownikTowary" />
+          <EntitySet Name="StanowiskaPracy" EntityType="Self.StanowiskaPracy" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Towary" EntityType="Self.Towary" />
+          <EntitySet Name="Transakcje" EntityType="Self.Transakcje" />
+          <EntitySet Name="Trasy" EntityType="Self.Trasy" />
+          <EntitySet Name="TypyMaszyn" EntityType="Self.TypyMaszyn" />
+          <EntitySet Name="Warsztaty" EntityType="Self.Warsztaty" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" />
+          <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" />
+          <EntitySet Name="ZamowieniaZewnetrzne" EntityType="Self.ZamowieniaZewnetrzne" />
+          <AssociationSet Name="FK_DostawaTowary_Towary" Association="Self.FK_DostawaTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="DostawaTowary" EntitySet="DostawaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DostawaTowary_ZamowieniaZewnetrzne" Association="Self.FK_DostawaTowary_ZamowieniaZewnetrzne">
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+            <End Role="DostawaTowary" EntitySet="DostawaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Dostawcy" Association="Self.FK_ZamowieniaZewnetrzne_Dostawcy">
+            <End Role="Dostawcy" EntitySet="Dostawcy" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Faktury" Association="Self.FK_ZamowieniaZewnetrzne_Faktury">
+            <End Role="Faktury" EntitySet="Faktury" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MagazynTowary_Magazyny" Association="Self.FK_MagazynTowary_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="MagazynTowary" EntitySet="MagazynTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MagazynTowary_Towary" Association="Self.FK_MagazynTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="MagazynTowary" EntitySet="MagazynTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienia_Magazyny" Association="Self.FK_Zamowienia_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZamowieniaZewnetrzne_Magazyny" Association="Self.FK_ZamowieniaZewnetrzne_Magazyny">
+            <End Role="Magazyny" EntitySet="Magazyny" />
+            <End Role="ZamowieniaZewnetrzne" EntitySet="ZamowieniaZewnetrzne" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaszynaTowary_Maszyny" Association="Self.FK_MaszynaTowary_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="MaszynaTowary" EntitySet="MaszynaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaszynaTowary_Towary" Association="Self.FK_MaszynaTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="MaszynaTowary" EntitySet="MaszynaTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maszyny_TypyMaszyn" Association="Self.FK_Maszyny_TypyMaszyn">
+            <End Role="TypyMaszyn" EntitySet="TypyMaszyn" />
+            <End Role="Maszyny" EntitySet="Maszyny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transakcje_Maszyny" Association="Self.FK_Transakcje_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="Transakcje" EntitySet="Transakcje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Maszyny" Association="Self.FK_Wizyty_Maszyny">
+            <End Role="Maszyny" EntitySet="Maszyny" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pojazdy_Warsztaty" Association="Self.FK_Pojazdy_Warsztaty">
+            <End Role="Warsztaty" EntitySet="Warsztaty" />
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_Pojazdy" Association="Self.FK_Pracownicy_Pojazdy">
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_StanowiskaPracy" Association="Self.FK_Pracownicy_StanowiskaPracy">
+            <End Role="StanowiskaPracy" EntitySet="StanowiskaPracy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownicy_Trasy" Association="Self.FK_Pracownicy_Trasy">
+            <End Role="Trasy" EntitySet="Trasy" />
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PracownikTowary_Pracownicy" Association="Self.FK_PracownikTowary_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="PracownikTowary" EntitySet="PracownikTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Pracownicy" Association="Self.FK_Wizyty_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienia_Pracownicy" Association="Self.FK_Zamowienia_Pracownicy">
+            <End Role="Pracownicy" EntitySet="Pracownicy" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PracownikTowary_Towary" Association="Self.FK_PracownikTowary_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="PracownikTowary" EntitySet="PracownikTowary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transakcje_Towary" Association="Self.FK_Transakcje_Towary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="Transakcje" EntitySet="Transakcje" />
+          </AssociationSet>
+          <AssociationSet Name="LokalizacjaMaszyny" Association="Self.LokalizacjaMaszyny">
+            <End Role="Lokalizacje" EntitySet="Lokalizacje" />
+            <End Role="Maszyny" EntitySet="Maszyny" />
+          </AssociationSet>
+          <AssociationSet Name="MaszynaTrasa" Association="Self.MaszynaTrasa">
+            <End Role="Trasy" EntitySet="Trasy" />
+            <End Role="Maszyny" EntitySet="Maszyny" />
+          </AssociationSet>
+          <AssociationSet Name="ZamowienieTowary" Association="Self.ZamowienieTowary">
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VendingModelStoreContainer" CdmEntityContainer="VendingEntities">
+          <EntitySetMapping Name="DostawaTowary">
+            <EntityTypeMapping TypeName="VendingModel.DostawaTowary">
+              <MappingFragment StoreEntitySet="DostawaTowary">
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="IDZamowienieZewnetrzne" ColumnName="IDZamowienieZewnetrzne" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DataWaznosci" ColumnName="DataWaznosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dostawcy">
+            <EntityTypeMapping TypeName="VendingModel.Dostawcy">
+              <MappingFragment StoreEntitySet="Dostawcy">
+                <ScalarProperty Name="IDDostawcy" ColumnName="IDDostawcy" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktury">
+            <EntityTypeMapping TypeName="VendingModel.Faktury">
+              <MappingFragment StoreEntitySet="Faktury">
+                <ScalarProperty Name="IDFaktury" ColumnName="IDFaktury" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="NazwaSprzedawcy" ColumnName="NazwaSprzedawcy" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="WartoscNetto" ColumnName="WartoscNetto" />
+                <ScalarProperty Name="WartoscBrutto" ColumnName="WartoscBrutto" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
+                <ScalarProperty Name="NumerFaktury" ColumnName="NumerFaktury" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lokalizacje">
+            <EntityTypeMapping TypeName="VendingModel.Lokalizacje">
+              <MappingFragment StoreEntitySet="Lokalizacje">
+                <ScalarProperty Name="IDLokalizacji" ColumnName="IDLokalizacji" />
+                <ScalarProperty Name="NazwaKlienta" ColumnName="NazwaKlienta" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MagazynTowary">
+            <EntityTypeMapping TypeName="VendingModel.MagazynTowary">
+              <MappingFragment StoreEntitySet="MagazynTowary">
+                <ScalarProperty Name="IDMagazynu" ColumnName="IDMagazynu" />
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="Stan" ColumnName="Stan" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magazyny">
+            <EntityTypeMapping TypeName="VendingModel.Magazyny">
+              <MappingFragment StoreEntitySet="Magazyny">
+                <ScalarProperty Name="IDMagazynu" ColumnName="IDMagazynu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaszynaTowary">
+            <EntityTypeMapping TypeName="VendingModel.MaszynaTowary">
+              <MappingFragment StoreEntitySet="MaszynaTowary">
+                <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="Stan" ColumnName="Stan" />
+                <ScalarProperty Name="JednostkaMiary" ColumnName="JednostkaMiary" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maszyny">
+            <EntityTypeMapping TypeName="VendingModel.Maszyny">
+              <MappingFragment StoreEntitySet="Maszyny">
+                <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+                <ScalarProperty Name="IDTypMaszyny" ColumnName="IDTypMaszyny" />
+                <ScalarProperty Name="NumerSeryjny" ColumnName="NumerSeryjny" />
+                <ScalarProperty Name="RokProdukcji" ColumnName="RokProdukcji" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DataMontazu" ColumnName="DataMontazu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pojazdy">
+            <EntityTypeMapping TypeName="VendingModel.Pojazdy">
+              <MappingFragment StoreEntitySet="Pojazdy">
+                <ScalarProperty Name="IDPojazdu" ColumnName="IDPojazdu" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="NumerRejestracyjny" ColumnName="NumerRejestracyjny" />
+                <ScalarProperty Name="DataPrzegladu" ColumnName="DataPrzegladu" />
+                <ScalarProperty Name="DataUbezpieczenia" ColumnName="DataUbezpieczenia" />
+                <ScalarProperty Name="IDWarsztatu" ColumnName="IDWarsztatu" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Usterki" ColumnName="Usterki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownicy">
+            <EntityTypeMapping TypeName="VendingModel.Pracownicy">
+              <MappingFragment StoreEntitySet="Pracownicy">
+                <ScalarProperty Name="IDPracownika" ColumnName="IDPracownika" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="IDStanowiskaPracy" ColumnName="IDStanowiskaPracy" />
+                <ScalarProperty Name="Pensja" ColumnName="Pensja" />
+                <ScalarProperty Name="DataZatrudnienia" ColumnName="DataZatrudnienia" />
+                <ScalarProperty Name="IDPojazdu" ColumnName="IDPojazdu" />
+                <ScalarProperty Name="IDTrasy" ColumnName="IDTrasy" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PracownikTowary">
+            <EntityTypeMapping TypeName="VendingModel.PracownikTowary">
+              <MappingFragment StoreEntitySet="PracownikTowary">
+                <ScalarProperty Name="IDPracownika" ColumnName="IDPracownika" />
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="Stan" ColumnName="Stan" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StanowiskaPracy">
+            <EntityTypeMapping TypeName="VendingModel.StanowiskaPracy">
+              <MappingFragment StoreEntitySet="StanowiskaPracy">
+                <ScalarProperty Name="IDStanowiskaPracy" ColumnName="IDStanowiskaPracy" />
+                <ScalarProperty Name="NazwaStanowiska" ColumnName="NazwaStanowiska" />
+                <ScalarProperty Name="Dzial" ColumnName="Dzial" />
+                <ScalarProperty Name="WymaganeDoswiadczenie" ColumnName="WymaganeDoswiadczenie" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VendingModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towary">
+            <EntityTypeMapping TypeName="VendingModel.Towary">
+              <MappingFragment StoreEntitySet="Towary">
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="JednostkaMiary" ColumnName="JednostkaMiary" />
+                <ScalarProperty Name="Producent" ColumnName="Producent" />
+                <ScalarProperty Name="KodKreskowy" ColumnName="KodKreskowy" />
+                <ScalarProperty Name="Wymiary" ColumnName="Wymiary" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transakcje">
+            <EntityTypeMapping TypeName="VendingModel.Transakcje">
+              <MappingFragment StoreEntitySet="Transakcje">
+                <ScalarProperty Name="IDTransakcji" ColumnName="IDTransakcji" />
+                <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+                <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="TypPlatnosci" ColumnName="TypPlatnosci" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trasy">
+            <EntityTypeMapping TypeName="VendingModel.Trasy">
+              <MappingFragment StoreEntitySet="Trasy">
+                <ScalarProperty Name="IDTrasy" ColumnName="IDTrasy" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypyMaszyn">
+            <EntityTypeMapping TypeName="VendingModel.TypyMaszyn">
+              <MappingFragment StoreEntitySet="TypyMaszyn">
+                <ScalarProperty Name="IDTypMaszyny" ColumnName="IDTypMaszyny" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Producent" ColumnName="Producent" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warsztaty">
+            <EntityTypeMapping TypeName="VendingModel.Warsztaty">
+              <MappingFragment StoreEntitySet="Warsztaty">
+                <ScalarProperty Name="IDWarsztatu" ColumnName="IDWarsztatu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wizyty">
+            <EntityTypeMapping TypeName="VendingModel.Wizyty">
+              <MappingFragment StoreEntitySet="Wizyty">
+                <ScalarProperty Name="IDWizyty" ColumnName="IDWizyty" />
+                <ScalarProperty Name="IDPracownika" ColumnName="IDPracownika" />
+                <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="TypWizyty" ColumnName="TypWizyty" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienia">
+            <EntityTypeMapping TypeName="VendingModel.Zamowienia">
+              <MappingFragment StoreEntitySet="Zamowienia">
+                <ScalarProperty Name="IDZamowienia" ColumnName="IDZamowienia" />
+                <ScalarProperty Name="IDMagazynu" ColumnName="IDMagazynu" />
+                <ScalarProperty Name="IDPracownika" ColumnName="IDPracownika" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Priorytet" ColumnName="Priorytet" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZamowieniaZewnetrzne">
+            <EntityTypeMapping TypeName="VendingModel.ZamowieniaZewnetrzne">
+              <MappingFragment StoreEntitySet="ZamowieniaZewnetrzne">
+                <ScalarProperty Name="IDZamowienieZewnetrzne" ColumnName="IDZamowienieZewnetrzne" />
+                <ScalarProperty Name="IDMagazynu" ColumnName="IDMagazynu" />
+                <ScalarProperty Name="IDDostawcy" ColumnName="IDDostawcy" />
+                <ScalarProperty Name="IDFaktury" ColumnName="IDFaktury" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="LokalizacjaMaszyny" TypeName="VendingModel.LokalizacjaMaszyny" StoreEntitySet="LokalizacjaMaszyny">
+            <EndProperty Name="Lokalizacje">
+              <ScalarProperty Name="IDLokalizacji" ColumnName="IdLokalizacji" />
+            </EndProperty>
+            <EndProperty Name="Maszyny">
+              <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MaszynaTrasa" TypeName="VendingModel.MaszynaTrasa" StoreEntitySet="MaszynaTrasa">
+            <EndProperty Name="Trasy">
+              <ScalarProperty Name="IDTrasy" ColumnName="IDTrasy" />
+            </EndProperty>
+            <EndProperty Name="Maszyny">
+              <ScalarProperty Name="NumerMaszyny" ColumnName="NumerMaszyny" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ZamowienieTowary" TypeName="VendingModel.ZamowienieTowary" StoreEntitySet="ZamowienieTowary">
+            <EndProperty Name="Towary">
+              <ScalarProperty Name="IDTowaru" ColumnName="IDTowaru" />
+            </EndProperty>
+            <EndProperty Name="Zamowienia">
+              <ScalarProperty Name="IDZamowienia" ColumnName="IDZamowienia" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

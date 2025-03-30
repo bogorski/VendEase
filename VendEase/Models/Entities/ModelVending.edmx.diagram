@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd78fa5953da47769875f7d98b3c1750" Name="Diagram1">
+        <EntityTypeShape EntityType="VendingModel.DostawaTowary" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Dostawcy" Width="1.5" PointX="1.5" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Faktury" Width="1.5" PointX="1.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Lokalizacje" Width="1.5" PointX="1.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.MagazynTowary" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Magazyny" Width="1.5" PointX="1.5" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.MaszynaTowary" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Maszyny" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Pojazdy" Width="1.5" PointX="1.5" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Pracownicy" Width="1.5" PointX="0.75" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.PracownikTowary" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.StanowiskaPracy" Width="1.5" PointX="1.5" PointY="57.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Towary" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Transakcje" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Trasy" Width="1.5" PointX="1.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.TypyMaszyn" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Warsztaty" Width="1.5" PointX="1.5" PointY="54.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Wizyty" Width="1.5" PointX="4" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.Zamowienia" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VendingModel.ZamowieniaZewnetrzne" Width="1.5" PointX="0.75" PointY="30.75" IsExpanded="true" />
+        <AssociationConnector Association="VendingModel.FK_DostawaTowary_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_DostawaTowary_ZamowieniaZewnetrzne" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_ZamowieniaZewnetrzne_Dostawcy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_ZamowieniaZewnetrzne_Faktury" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_MagazynTowary_Magazyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_MagazynTowary_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Zamowienia_Magazyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_ZamowieniaZewnetrzne_Magazyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_MaszynaTowary_Maszyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_MaszynaTowary_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Maszyny_TypyMaszyn" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Transakcje_Maszyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Wizyty_Maszyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Pojazdy_Warsztaty" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Pracownicy_Pojazdy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Pracownicy_StanowiskaPracy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Pracownicy_Trasy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_PracownikTowary_Pracownicy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Wizyty_Pracownicy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Zamowienia_Pracownicy" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_PracownikTowary_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.FK_Transakcje_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.LokalizacjaMaszyny" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.MaszynaTrasa" ManuallyRouted="false" />
+        <AssociationConnector Association="VendingModel.ZamowienieTowary" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

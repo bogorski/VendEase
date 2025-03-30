@@ -1,0 +1,24 @@
+﻿<local:WszystkieViewBase x:Class="VendEase.Views.WszyscyPracownicyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                <DataGridTextColumn Header="Stanowisko" Binding="{Binding StanowiskoNazwa}"/>
+                <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
+                <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia}"/>
+                <DataGridTextColumn Header="Numer rejestracyny pojazdu" Binding="{Binding PojazdNumerRejestracyjny}"/>
+                <DataGridTextColumn Header="Trasa" Binding="{Binding TrasaNazwa}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

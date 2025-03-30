@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="VendEase.Views.RaportNajczesciejSprzedawanyTowarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+                      d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Height="400" Width="500" Style="{StaticResource ReportStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Najlepiej sprzedający się towar w automacie"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Od"/>
+            <DatePicker Grid.Column="1" SelectedDate="{Binding DataOd}"/>
+            <Label Grid.Column="2" Content="Do"/>
+            <DatePicker Grid.Column="3" SelectedDate="{Binding DataDo}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Wybierz maszynę:"/>
+            <ComboBox Grid.Column="1" 
+           ItemsSource="{Binding MaszynyItems}" 
+           DisplayMemberPath="Value" 
+           SelectedValuePath="Key"
+           SelectedValue="{Binding Path=NumerMaszyny, Mode=TwoWay}"/>
+        </Grid>
+        <Button Grid.Row="3" Content="Sprawdź" Command="{Binding ObliczCommand}"/>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Nazwa towaru: " />
+            <Label Grid.Row="1" VerticalAlignment="Top" Content="{Binding NazwaTowaru}"/>
+        </Grid>
+    </Grid>
+</UserControl>

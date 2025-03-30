@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{435572FA-D2A2-48CA-B905-4A7899337063}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VendEase</RootNamespace>
+    <AssemblyName>VendEase</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\DostawcyB.cs" />
+    <Compile Include="Models\BusinessLogic\FakturyB.cs" />
+    <Compile Include="Models\BusinessLogic\MagazynyB.cs" />
+    <Compile Include="Models\BusinessLogic\MaszynyB.cs" />
+    <Compile Include="Models\BusinessLogic\TowarSprzedazB.cs" />
+    <Compile Include="Models\BusinessLogic\PojazdyB.cs" />
+    <Compile Include="Models\BusinessLogic\PracownicyB.cs" />
+    <Compile Include="Models\BusinessLogic\StanowiskaB.cs" />
+    <Compile Include="Models\BusinessLogic\TowarPracownikIloscB.cs" />
+    <Compile Include="Models\BusinessLogic\TowaryB.cs" />
+    <Compile Include="Models\BusinessLogic\TransakcjeMaszynyTowarB.cs" />
+    <Compile Include="Models\BusinessLogic\TrasyB.cs" />
+    <Compile Include="Models\BusinessLogic\TypyMaszynB.cs" />
+    <Compile Include="Models\BusinessLogic\UtargB.cs" />
+    <Compile Include="Models\BusinessLogic\WarsztatyB.cs" />
+    <Compile Include="Models\BusinessLogic\ZamowieniaZewnetrzneB.cs" />
+    <Compile Include="Models\EntitiesForView\DostawaTowaryForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
+    <Compile Include="Models\EntitiesForView\MagazynTowaryForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\MaszynaTowarForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\MaszynyForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PojazdForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PracownicyForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PracownikTowaryForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\TowarMaszynaStan.cs" />
+    <Compile Include="Models\EntitiesForView\TransakcjeForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\WizytyForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZamowieniaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZamowieniaZewnetrzneForAllView.cs" />
+    <Compile Include="Models\Entities\DostawaTowary.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Dostawcy.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Faktury.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Lokalizacje.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\MagazynTowary.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Magazyny.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\MaszynaTowary.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Maszyny.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\ModelVending.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelVending.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\ModelVending.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\ModelVending.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelVending.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Pojazdy.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Pracownicy.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\PracownikTowary.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\StanowiskaPracy.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\sysdiagrams.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Towary.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Transakcje.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Trasy.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\TypyMaszyn.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Warsztaty.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Wizyty.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Zamowienia.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\ZamowieniaZewnetrzne.cs">
+      <DependentUpon>ModelVending.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Validators\BusinessValidator.cs" />
+    <Compile Include="Models\Validators\DateValidator.cs" />
+    <Compile Include="Models\Validators\NIPValidator.cs" />
+    <Compile Include="Models\Validators\QuantityValidator.cs" />
+    <Compile Include="Models\Validators\PostCodeValidator.cs" />
+    <Compile Include="Models\Validators\RegistrationNumberValidator.cs" />
+    <Compile Include="Models\Validators\StringValidator.cs" />
+    <Compile Include="Models\Validators\Validator.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\JedenViewModel.cs" />
+    <Compile Include="ViewModels\RaportNajczesciejSprzedawanyTowarViewModel.cs" />
+    <Compile Include="ViewModels\NowaDostawaTowaryViewModel.cs" />
+    <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
+    <Compile Include="ViewModels\NowaLokalizacjaViewModel.cs" />
+    <Compile Include="ViewModels\NowaMaszynaTowaryViewModel.cs" />
+    <Compile Include="ViewModels\NowaMaszynaViewModel.cs" />
+    <Compile Include="ViewModels\NowaTransakcjaViewModel.cs" />
+    <Compile Include="ViewModels\NowaTrasaViewModel.cs" />
+    <Compile Include="ViewModels\NowaWizytaViewModel.cs" />
+    <Compile Include="ViewModels\NoweStanowiskoPracyViewModel.cs" />
+    <Compile Include="ViewModels\NoweZamowienieViewModel.cs" />
+    <Compile Include="ViewModels\NoweZamowienieZewnetrzneViewModel.cs" />
+    <Compile Include="ViewModels\NowyDostawcaViewModel.cs" />
+    <Compile Include="ViewModels\NowyMagazynTowaryViewModel.cs" />
+    <Compile Include="ViewModels\NowyMagazynViewModel.cs" />
+    <Compile Include="ViewModels\NowyPojazdViewModel.cs" />
+    <Compile Include="ViewModels\NowyPracownikTowaryViewModel.cs" />
+    <Compile Include="ViewModels\NowyPracownikViewModel.cs" />
+    <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\NowyTypMaszynyViewModel.cs" />
+    <Compile Include="ViewModels\RaportPracownikTowaryViewModel.cs" />
+    <Compile Include="ViewModels\RaportSprzedazyViewModel.cs" />
+    <Compile Include="ViewModels\WidokMaszynaViewModel.cs" />
+    <Compile Include="ViewModels\WidokPracownikViewModel.cs" />
+    <Compile Include="ViewModels\WidokViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyDostawcyViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyPracownicyTowaryViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieDostawyTowaryViewMode.cs" />
+    <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieLokalizacjeViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieMagazynyTowaryViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieMagazynyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieMaszynyTowaryViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieMaszynyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkiePojazdyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieStanowiskaPracyViewModel.cs" />
+    <Compile Include="ViewModels\CommandViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NowyWarsztatViewModel.cs" />
+    <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieTransakcjeViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieTrasyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieTypyMaszynViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieWarsztatyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieWizytyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZamowieniaViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZamowieniaZewnetrzneViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\JedenViewBase.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportNajczesciejSprzedawanyTowarView.xaml.cs">
+      <DependentUpon>RaportNajczesciejSprzedawanyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaDostawaTowaryView.xaml.cs">
+      <DependentUpon>NowaDostawaTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaFakturaView.xaml.cs">
+      <DependentUpon>NowaFakturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaLokalizacjaView.xaml.cs">
+      <DependentUpon>NowaLokalizacjaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaMaszynaTowaryView.xaml.cs">
+      <DependentUpon>NowaMaszynaTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaMaszynaView.xaml.cs">
+      <DependentUpon>NowaMaszynaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaTransakcjaView.xaml.cs">
+      <DependentUpon>NowaTransakcjaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaTrasaView.xaml.cs">
+      <DependentUpon>NowaTrasaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaWizytaView.xaml.cs">
+      <DependentUpon>NowaWizytaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoweStanowiskoPracyView.xaml.cs">
+      <DependentUpon>NoweStanowiskoPracyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoweZamowienieView.xaml.cs">
+      <DependentUpon>NoweZamowienieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoweZamowienieZewnetrzneView.xaml.cs">
+      <DependentUpon>NoweZamowienieZewnetrzneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyDostawcaView.xaml.cs">
+      <DependentUpon>NowyDostawcaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyMagazynTowaryView.xaml.cs">
+      <DependentUpon>NowyMagazynTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyMagazynView.xaml.cs">
+      <DependentUpon>NowyMagazynView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyPojazdView.xaml.cs">
+      <DependentUpon>NowyPojazdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyPracownikTowaryView.xaml.cs">
+      <DependentUpon>NowyPracownikTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyPracownikView.xaml.cs">
+      <DependentUpon>NowyPracownikView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyTowarView.xaml.cs">
+      <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyTypMaszynyView.xaml.cs">
+      <DependentUpon>NowyTypMaszynyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyWarsztatView.xaml.cs">
+      <DependentUpon>NowyWarsztatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportPracownikTowaryView.xaml.cs">
+      <DependentUpon>RaportPracownikTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportSprzedazyView.xaml.cs">
+      <DependentUpon>RaportSprzedazyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WidokMaszynaView.xaml.cs">
+      <DependentUpon>WidokMaszynaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WidokPracownikView.xaml.cs">
+      <DependentUpon>WidokPracownikView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WidokViewBase.cs" />
+    <Compile Include="Views\WszyscyDostawcyView.xaml.cs">
+      <DependentUpon>WszyscyDostawcyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyPracownicyTowaryView.xaml.cs">
+      <DependentUpon>WszyscyPracownicyTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyPracownicyView.xaml.cs">
+      <DependentUpon>WszyscyPracownicyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieDostawyTowaryView.xaml.cs">
+      <DependentUpon>WszystkieDostawyTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieFakturyView.xaml.cs">
+      <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieLokalizacjeView.xaml.cs">
+      <DependentUpon>WszystkieLokalizacjeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieMagazynyTowaryView.xaml.cs">
+      <DependentUpon>WszystkieMagazynyTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieMagazynyView.xaml.cs">
+      <DependentUpon>WszystkieMagazynyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieMaszynyTowaryView.xaml.cs">
+      <DependentUpon>WszystkieMaszynyTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieMaszynyView.xaml.cs">
+      <DependentUpon>WszystkieMaszynyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkiePojazdyView.xaml.cs">
+      <DependentUpon>WszystkiePojazdyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieStanowiskaPracyView.xaml.cs">
+      <DependentUpon>WszystkieStanowiskaPracyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieTowaryView.xaml.cs">
+      <DependentUpon>WszystkieTowaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieTransakcjeView.xaml.cs">
+      <DependentUpon>WszystkieTransakcjeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieTrasyView.xaml.cs">
+      <DependentUpon>WszystkieTrasyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieTypyMaszynView.xaml.cs">
+      <DependentUpon>WszystkieTypyMaszynView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieViewBase.cs" />
+    <Compile Include="Views\WszystkieWarsztatyView.xaml.cs">
+      <DependentUpon>WszystkieWarsztatyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieWizytyView.xaml.cs">
+      <DependentUpon>WszystkieWizytyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieZamowieniaView.xaml.cs">
+      <DependentUpon>WszystkieZamowieniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieZamowieniaZewnetrzneView.xaml.cs">
+      <DependentUpon>WszystkieZamowieniaZewnetrzneView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <EntityDeploy Include="Models\Entities\ModelVending.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelVending.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Entities\ModelVending.edmx.diagram">
+      <DependentUpon>ModelVending.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindowResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportNajczesciejSprzedawanyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaDostawaTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaFakturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaLokalizacjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaMaszynaTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaMaszynaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaTransakcjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaTrasaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaWizytaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoweStanowiskoPracyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoweZamowienieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoweZamowienieZewnetrzneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyDostawcaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyMagazynTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyMagazynView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyPojazdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyPracownikTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyTypMaszynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyWarsztatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportPracownikTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportSprzedazyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WidokMaszynaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WidokPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyDostawcyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyPracownicyTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyPracownicyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieDostawyTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieFakturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieLokalizacjeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieMagazynyTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieMagazynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieMaszynyTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieMaszynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkiePojazdyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieStanowiskaPracyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieTransakcjeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieTrasyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieTypyMaszynView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieWarsztatyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieWizytyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZamowieniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZamowieniaZewnetrzneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cancel_icon.png" />
+    <Resource Include="Resources\save_icon.png" />
+    <Resource Include="Resources\add_icon.png" />
+    <Resource Include="Resources\delete_icon.png" />
+    <Resource Include="Resources\edit_icon.png" />
+    <Resource Include="Resources\refresh_icon.png" />
+    <Resource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\Entities\ModelVending.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelVending.edmx</DependentUpon>
+      <LastGenOutput>ModelVending.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Entities\ModelVending.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelVending.edmx</DependentUpon>
+      <LastGenOutput>ModelVending.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

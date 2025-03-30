@@ -1,0 +1,23 @@
+﻿<local:WszystkieViewBase x:Class="VendEase.Views.WszystkieStanowiskaPracyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IDStanowiskaPracy}"/>
+                <DataGridTextColumn Header="Nazwa stanowiska" Binding="{Binding NazwaStanowiska}"/>
+                <DataGridTextColumn Header="Dział" Binding="{Binding Dzial}"/>
+                <DataGridTextColumn Header="Wymagane doświadczenie" Binding="{Binding WymaganeDoswiadczenie}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Header="Data utworzenia" Binding="{Binding DataUtworzenia}"/>
+                <DataGridTextColumn Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

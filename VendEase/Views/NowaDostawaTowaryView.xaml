@@ -1,0 +1,47 @@
+﻿<local:JedenViewBase x:Class="VendEase.Views.NowaDostawaTowaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Style="{StaticResource NewElementStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Nazwa towaru"/>
+        <ComboBox Grid.Column="1" Grid.Row="0" 
+          ItemsSource="{Binding TowaryItems}"
+          DisplayMemberPath="Value"
+          SelectedValuePath="Key"
+          SelectedValue="{Binding Path=IDTowaru, Mode=TwoWay}"
+          />
+        
+        <Label Grid.Column="0" Grid.Row="1" Content="Numer zamówienia"/>
+        <TextBox Grid.Column="1" Grid.Row="1" IsEnabled="False" Text="{Binding Path=NumerZamowienia, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Style="{StaticResource DotsButtonStyle}" Content="..." Grid.Column="2" Grid.Row="1" Command="{Binding ShowZamowieniaZewnetrzne}"/>
+        
+        <Label Grid.Column="0" Grid.Row="2" Content="Data zamówienia"/>
+        <TextBox Grid.Column="1" Grid.Row="2" IsEnabled="False" Text="{Binding Path=DataZamowienia, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" Content="Ilość"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Ilosc, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Opis"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="5"  Content="Data ważności"/>
+        <DatePicker Grid.Column="1" Grid.Row="5" SelectedDate="{Binding Path=DataWaznosci, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</local:JedenViewBase>

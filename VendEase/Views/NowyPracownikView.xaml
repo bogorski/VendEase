@@ -1,0 +1,64 @@
+﻿<local:JedenViewBase x:Class="VendEase.Views.NowyPracownikView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendEase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Style="{StaticResource NewElementStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0"  Content="Imię"/>
+        <TextBox Grid.Column="1" Grid.Row="0"  Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="1"  Content="Nazwisko"/>
+        <TextBox Grid.Column="1" Grid.Row="1"  Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="2"  Content="Stanowisko"/>
+        <ComboBox Grid.Column="1" Grid.Row="2"  
+                  ItemsSource="{Binding StanowiskaItems}"
+                  DisplayMemberPath="Value"
+                  SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IDStanowiskaPracy, Mode=TwoWay}"
+                  />
+
+        <Label Grid.Column="0" Grid.Row="3"  Content="Pensja"/>
+        <TextBox Grid.Column="1" Grid.Row="3"  Text="{Binding Path=Pensja, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="4"  Content="Data zatrudnienia"/>
+        <DatePicker Grid.Column="1" Grid.Row="4"  SelectedDate="{Binding Path=DataZatrudnienia, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="5"  Content="Numer rejestracyny pojazdu"/>
+        <TextBox Grid.Column="1" Grid.Row="5" IsEnabled="False" Text="{Binding Path=NumerRejestracyjny, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Style="{StaticResource DotsButtonStyle}" Content="..." Grid.Column="2" Grid.Row="5" Command="{Binding ShowPojazdy}"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Marka"/>
+        <TextBox Grid.Column="1" Grid.Row="6" IsEnabled="False" Text="{Binding Path=Marka, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="7"  Content="Trasa"/>
+        <ComboBox Grid.Column="1" Grid.Row="7" 
+                  ItemsSource="{Binding TrasyItems}"
+                  DisplayMemberPath="Value"
+                  SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IDTrasy, Mode=TwoWay}"
+                  />
+
+        <Label Grid.Column="0" Grid.Row="8"  Content="Opis"/>
+        <TextBox Grid.Column="1" Grid.Row="8"  Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</local:JedenViewBase>
